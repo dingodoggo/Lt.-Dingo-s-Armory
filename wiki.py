@@ -21,13 +21,13 @@ async def on_message(message):
            currency = args[2]
            if price.isdigit() is True and int(price) >= 0:
                if currency.lower() == 'gold':
-                   goldSell = int(price) * sellValueOne
-                   await bot.send_message(message.channel, '{:,} Gold'.format(math.ceil(goldSell)))
+                   goldSellOne = int(price) * sellValueOne
+                   await bot.send_message(message.channel, '{:,} Gold'.format(math.ceil(goldSellOne)))
                elif currency.lower() == 'ac':
-                   acSellFirst = int(price) * sellValueTwo
-                   acSellSecond = int(price) * sellValueOne
-                   await bot.send_message(message.channel, 'First 24 Hours: {:,} AC'.format(math.ceil(acSellFirst)))
-                   await bot.send_message(message.channel, 'After 24 Hours: {:,} AC'.format(math.ceil(acSellSecond)))
+                   acSellFirstOne = int(price) * sellValueTwo
+                   acSellSecondOne = int(price) * sellValueOne
+                   await bot.send_message(message.channel, 'First 24 Hours: {:,} AC'.format(math.ceil(acSellFirstOne)))
+                   await bot.send_message(message.channel, 'After 24 Hours: {:,} AC'.format(math.ceil(acSellSecondOne)))
                else:
                    await bot.send_message(message.channel, 'Please indicate if the item is AC or Gold.')
            else:
