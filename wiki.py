@@ -54,7 +54,7 @@ async def on_message(message):
            else:
                await bot.send_message(message.channel, 'Please enter a valid non-zero, non-negative number.')
         else:
-            await bot.send_message(message.channel, 'Please use the syntax: **$sellback <price> <AC/Gold>**')
+            await bot.send_message(message.channel, 'Please use the syntax: **$sell <price> <AC/Gold>**')
 
     if message.content.lower().startswith('$aqwchar'):
         charLook = message.content.split(' ')
