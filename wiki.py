@@ -1,6 +1,7 @@
 import discord
 import math
 import os
+import random
 from discord.ext import commands
 from discord.ext.commands import Bot
 
@@ -14,6 +15,27 @@ async def on_message(message):
     if message.author == bot.user:
         return
     if message.content.lower().startswith('$sellback'):
+        args = message.content.split(" ")
+        if len(args) == 3:
+           price = args[1].replace(',','')
+           currency = args[2]
+           if price.isdigit() is True and int(price) >= 0:
+               if currency.lower() == 'gold':
+                   goldSell = int(price) * sellValueOne
+                   await bot.send_message(message.channel, '{:,} Gold'.format(math.ceil(goldSell)))
+               elif currency.lower() == 'ac':
+                   acSellFirst = int(price) * sellValueTwo
+                   acSellSecond = int(price) * sellValueOne
+                   await bot.send_message(message.channel, 'First 24 Hours: {:,} AC'.format(math.ceil(acSellFirst)))
+                   await bot.send_message(message.channel, 'After 24 Hours: {:,} AC'.format(math.ceil(acSellSecond)))
+               else:
+                   await bot.send_message(message.channel, 'Please indicate if the item is AC or Gold.')
+           else:
+               await bot.send_message(message.channel, 'Please enter a valid non-zero, non-negative number.')
+        else:
+            await bot.send_message(message.channel, 'Please use the syntax: **$sellback <price> <AC/Gold>**')
+           
+    if message.content.lower().startswith('$sell'):
         args = message.content.split(" ")
         if len(args) == 3:
            price = args[1].replace(',','')
@@ -67,6 +89,18 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, 'Please specify what you want to search after !3dwiki')
 
+    if message.content.lower().startswith('$help'):
+        embed = discord.Embed(title="Commands", description="These are my available commands. Woof.", color= random.randint(0x000000, 0xFFFFFF))
+        embed.set_author(name="Lt. Dingo", icon_url = "https://i.imgur.com/udByUnW.png")
+        embed.set_thumbnail(url="https://i.imgur.com/VjRmBoF.png")
+        embed.add_field(name='$sellback X Y or $sell X Y', value ='Returns the sellback value for price **X** in **Y** currency (AC or Gold).', inline=False)
+        embed.add_field(name='$aqwchar PLAYER', value ='Returns the character page for **PLAYER** in AQWorlds.', inline=False)
+        embed.add_field(name='$3dcharPLAYER', value ='Returns the character page for PLAYER in AQ3D.', inline=False)
+        embed.add_field(name='$wiki', value ='Searches the AQWWiki for your input.', inline=False)
+        embed.add_field(name='$3dwiki', value ='Searches the AQ3DWiki for your input.', inline=False)
+        embed.add_field(name='$help', value ='Returns this help box.', inline = False)
+        embed.set_footer(text="That's all, folks. Woof out.")
+        await bot.send_message(message.channel, embed=embed)
 
 @bot.event
 async def on_ready():
