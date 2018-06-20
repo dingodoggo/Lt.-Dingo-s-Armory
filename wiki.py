@@ -2,6 +2,7 @@ import discord
 import math
 import os
 import random
+import re
 from discord.ext import commands
 from discord.ext.commands import Bot
 
@@ -35,7 +36,7 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, 'Please use the syntax: **$sellback <price> <AC/Gold>**')
            
-    if message.content.lower().startswith('$sell'):
+    if bool(re.search(r'\bsell\b', message.content.lower())) is True:
         argsTwo = message.content.split(" ")
         if len(argsTwo) == 3:
            priceTwo = argsTwo[1].replace(',','')
