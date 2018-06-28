@@ -90,7 +90,7 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, 'Please specify what you want to search after !3dwiki')
 
-    if message.content.lower().startswith('$help'):
+    if message.content.lower().startswith('$help') or message.content.lower().startswith('$commands'):
         embed = discord.Embed(title="Commands", description="These are my available commands. Woof.", color= random.randint(0x000000, 0xFFFFFF))
         embed.set_author(name="Lt. Dingo", icon_url = "https://i.imgur.com/udByUnW.png")
         embed.set_thumbnail(url="https://i.imgur.com/VjRmBoF.png")
@@ -99,7 +99,7 @@ async def on_message(message):
         embed.add_field(name='$3dchar PLAYER', value ='Returns the character page for PLAYER in AQ3D.', inline=False)
         embed.add_field(name='$wiki', value ='Searches the AQWWiki for your input.', inline=False)
         embed.add_field(name='$3dwiki', value ='Searches the AQ3DWiki for your input.', inline=False)
-        embed.add_field(name='$help', value ='Returns this help box.', inline = False)
+        embed.add_field(name='$help or $commands', value ='Returns this help box.', inline = False)
         embed.set_footer(text="That's all, folks. Woof out.")
         await bot.send_message(message.channel, embed=embed)
 
