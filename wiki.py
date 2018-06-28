@@ -36,7 +36,7 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, 'Please use the syntax: **$sellback <price> <AC/Gold>**')
            
-    if re.match(r'\$sell', message.content.lower()):
+    if re.match(r'\$\bsell\b', message.content.lower()):
         argsTwo = message.content.split(" ")
         if len(argsTwo) == 3:
            priceTwo = argsTwo[1].replace(',','')
