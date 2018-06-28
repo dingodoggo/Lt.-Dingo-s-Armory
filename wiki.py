@@ -48,8 +48,8 @@ async def on_message(message):
                elif currencyTwo.lower() == 'ac':
                    acSellFirstTwo = int(priceTwo) * sellValueTwo
                    acSellSecondTwo = int(priceTwo) * sellValueOne
-                   await bot.send_message(message.channel, 'First 24 Hours: {:,} AC'.format(math.ceil(acSellFirstTwo)))
-                   await bot.send_message(message.channel, 'After 24 Hours: {:,} AC'.format(math.ceil(acSellSecondTwo)))
+                   await bot.send_message(message.channel, '**First 24 Hours**: {:,} AC'.format(math.ceil(acSellFirstTwo)))
+                   await bot.send_message(message.channel, '**After 24 Hours**: {:,} AC'.format(math.ceil(acSellSecondTwo)))
                else:
                    await bot.send_message(message.channel, 'Please indicate if the item is AC or Gold.')
            else:
@@ -96,7 +96,7 @@ async def on_message(message):
         embed.set_thumbnail(url="https://i.imgur.com/VjRmBoF.png")
         embed.add_field(name='$sellback X Y or $sell X Y', value ='Returns the sellback value for price **X** in **Y** currency (AC or Gold).', inline=False)
         embed.add_field(name='$aqwchar PLAYER', value ='Returns the character page for **PLAYER** in AQWorlds.', inline=False)
-        embed.add_field(name='$3dcharPLAYER', value ='Returns the character page for PLAYER in AQ3D.', inline=False)
+        embed.add_field(name='$3dchar PLAYER', value ='Returns the character page for PLAYER in AQ3D.', inline=False)
         embed.add_field(name='$wiki', value ='Searches the AQWWiki for your input.', inline=False)
         embed.add_field(name='$3dwiki', value ='Searches the AQ3DWiki for your input.', inline=False)
         embed.add_field(name='$help', value ='Returns this help box.', inline = False)
